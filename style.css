@@ -21,3 +21,38 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 
 /* Hero */
 .hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: #222; color: #fff; text-align: center; }
+/* --- Day 2: Layout & Form Styles --- */
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.section { padding: 80px 0; }
+.bg-light { background-color: #eceff1; }
+.section-title { text-align: center; margin-bottom: 40px; }
+.section-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
+
+.card { 
+    background: #ffffff; 
+    border-radius: 16px; 
+    padding: 30px; 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); 
+    border: 1px solid #e0e0e0; 
+}
+
+.input-group { margin-bottom: 20px; text-align: left; }
+.input-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+.input-group input, .input-group textarea, .input-group select { 
+    width: 100%; 
+    padding: 12px 15px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px; 
+    outline: none; 
+}
+
+.btn-primary { 
+    background: var(--accent); 
+    color: #000; 
+    display: inline-block; 
+    padding: 12px 28px; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    cursor: pointer; 
+}

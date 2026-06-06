@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <nav id="navbar">
@@ -28,6 +29,57 @@
             <p>Join the ultimate fitness portal.</p>
         </div>
     </header>
+<section id="logger" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Evening Activity Logger</h2>
+                <p>Log your daily workout and diet. (Data will be saved to database later)</p>
+            </div>
+            
+            <div class="card log-form-card" style="max-width: 600px; margin: 0 auto;">
+                <h3>Submit Today's Data</h3>
+                <form id="activity-form">
+                    
+                    <div class="input-group">
+                        <label>1. Workout Type</label>
+                        <select id="log-type">
+                            <option value="" disabled selected>Select Workout</option>
+                            <option value="HIIT / Cardio">HIIT / Cardio</option>
+                            <option value="Weight Lifting">Weight Lifting</option>
+                            <option value="Yoga / Stretching">Yoga / Stretching</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <div class="input-group" style="width: 100%;">
+                            <label>2. Duration (Mins)</label>
+                            <input type="number" id="log-duration" placeholder="e.g. 45">
+                        </div>
+                        <div class="input-group" style="width: 100%;">
+                            <label>3. Calories Burned</label>
+                            <input type="number" id="log-calories" placeholder="e.g. 350">
+                        </div>
+                    </div>
 
+                    <div class="input-group">
+                        <label>4. Intensity Level</label>
+                        <select id="log-intensity">
+                            <option value="" disabled selected>Select Intensity</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>5. Diet Summary</label>
+                        <textarea id="log-diet" rows="2" placeholder="What did you eat today?"></textarea>
+                    </div>
+                    
+                    <button type="button" class="btn-primary" style="width: 100%;">Save to Database</button>
+                </form>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
