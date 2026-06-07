@@ -81,5 +81,64 @@
             </div>
         </div>
     </section>
+    <section id="calculators" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Health Calculators</h2>
+                <p>Check your BMI and daily caloric needs instantly.</p>
+            </div>
+            <div class="calc-wrapper card">
+                <div class="calc-inputs">
+                    <div class="input-group">
+                        <label>Weight (kg)</label>
+                        <input type="number" id="calc-weight" placeholder="e.g., 75">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (cm)</label>
+                        <input type="number" id="calc-height" placeholder="e.g., 175">
+                    </div>
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number" id="calc-age" placeholder="e.g., 22">
+                    </div>
+                    <button type="button" class="btn-primary full-width">Calculate Results</button>
+                </div>
+                <div class="calc-results hidden" id="calc-results">
+                    <h3 id="res-bmi">BMI: 0</h3>
+                    <p id="res-bmi-msg" class="res-msg"></p>
+                    <div class="calorie-res">
+                        <h4>Maintenance Calories:</h4>
+                        <h2 id="res-cal" class="accent-text">0 kcal/day</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainers" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Expert Trainers</h2>
+                <p>Select a trainer to view their detailed profile.</p>
+            </div>
+            <div class="grid-5">
+                <div class="card trainer-card">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3>Alex Carter</h3>
+                    <p>Strength & Muscle</p>
+                </div>
+                <div class="card trainer-card">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3>Sarah Khan</h3>
+                    <p>Yoga & Flexibility</p>
+                </div>
+                <div class="card trainer-card">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <h3>David Miller</h3>
+                    <p>Fat Loss & Cardio</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
