@@ -132,3 +132,87 @@ footer { background: #0a0a0a; color: #fff; padding: 50px 0 20px; text-align: cen
 /* --- Theme Icon Button Settings --- */
 .nav-actions button { background: none; border: none; cursor: pointer; color: var(--text-color); outline: none; }
 .nav-actions .btn-icon i { font-size: 24px; transition: color 0.3s ease; }
+
+/* --- ABSOLUTE LAYOUT FIX FOR EVENING LOGGER --- */
+.grid-2 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+    align-items: flex-start !important;
+}
+
+.grid-2-inner {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 15px !important;
+}
+
+/* Make sure it drops to one column on small laptops/mobiles to prevent breaking */
+@media (max-width: 900px) {
+    .grid-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.log-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    text-align: left;
+}
+
+.log-date {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.log-item p {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+.scrollable-logs::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.scrollable-logs::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.scrollable-logs::-webkit-scrollbar-thumb {
+    background: var(--border-color); 
+    border-radius: 10px;
+}
+
+.scrollable-logs::-webkit-scrollbar-thumb:hover {
+    background: var(--accent); 
+
+.btn-refresh {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease, color 0.3s;
+}
+
+.btn-refresh:hover {
+    color: var(--accent);
+    transform: rotate(180deg);
+}

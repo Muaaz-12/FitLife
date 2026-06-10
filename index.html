@@ -33,51 +33,84 @@
         <div class="container">
             <div class="section-title">
                 <h2>Evening Activity Logger</h2>
-                <p>Log your daily workout and diet. (Data will be saved to database later)</p>
+                <p>Log your daily workout and diet. Data is securely saved to the JSON Server.</p>
             </div>
             
-            <div class="card log-form-card" style="max-width: 600px; margin: 0 auto;">
-                <h3>Submit Today's Data</h3>
-                <form id="activity-form">
+            <div class="grid-2 align-start" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start;">
+                
+                <div class="log-form-card" style="background: #fff; padding: 30px; border-radius: 12px; border: 1px solid var(--accent); box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-edit"></i> Submit Today's Data</h3>
+                    <div id="form-error" class="error-msg hidden">Please check the fields below.</div>
                     
-                    <div class="input-group">
-                        <label>1. Workout Type</label>
-                        <select id="log-type">
-                            <option value="" disabled selected>Select Workout</option>
-                            <option value="HIIT / Cardio">HIIT / Cardio</option>
-                            <option value="Weight Lifting">Weight Lifting</option>
-                            <option value="Yoga / Stretching">Yoga / Stretching</option>
-                        </select>
-                    </div>
-                    
-                    <div style="display: flex; gap: 15px;">
-                        <div class="input-group" style="width: 100%;">
-                            <label>2. Duration (Mins)</label>
-                            <input type="number" id="log-duration" placeholder="e.g. 45">
+                    <form id="activity-form">
+                        <div class="input-group">
+                            <label>1. Workout Type</label>
+                            <select id="log-type">
+                                <option value="" disabled selected>Select Workout</option>
+                                <option value="HIIT / Cardio">HIIT / Cardio</option>
+                                <option value="Weight Lifting">Weight Lifting</option>
+                                <option value="Yoga / Stretching">Yoga / Stretching</option>
+                            </select>
+                            <span class="field-error" id="err-type"></span>
                         </div>
-                        <div class="input-group" style="width: 100%;">
-                            <label>3. Calories Burned</label>
-                            <input type="number" id="log-calories" placeholder="e.g. 350">
+                        
+                        <div class="grid-2-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="input-group">
+                                <label>2. Duration (Mins)</label>
+                                <input type="number" id="log-duration" placeholder="e.g. 45">
+                                <span class="field-error" id="err-duration"></span>
+                            </div>
+                            <div class="input-group">
+                                <label>3. Calories Burned</label>
+                                <input type="number" id="log-calories" placeholder="e.g. 350">
+                                <span class="field-error" id="err-calories"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label>4. Intensity Level</label>
-                        <select id="log-intensity">
-                            <option value="" disabled selected>Select Intensity</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
+                        <div class="input-group">
+                            <label>4. Intensity Level</label>
+                            <select id="log-intensity">
+                                <option value="" disabled selected>Select Intensity</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                            <span class="field-error" id="err-intensity"></span>
+                        </div>
 
-                    <div class="input-group">
-                        <label>5. Diet Summary</label>
-                        <textarea id="log-diet" rows="2" placeholder="What did you eat today?"></textarea>
+                        <div class="input-group">
+                            <label>5. Diet Summary</label>
+                            <textarea id="log-diet" rows="2" placeholder="What did you eat today?"></textarea>
+                            <span class="field-error" id="err-diet"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary full-width" id="submit-btn" style="margin-top: 10px; font-size: 1.05rem;">
+                            Save to Database
+                        </button>
+                    </form>
+                </div>
+
+                <div class="log-history">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <h3 style="font-size: 1.3rem;">Recent Logs</h3>
+                        <button type="button" class="btn-refresh" onclick="fetchAndRenderLogs()" title="Refresh Logs">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                      </div>
+                    
+                     <select id="filter-type" class="filter-select" onchange="fetchAndRenderLogs()" style="border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 5px; padding: 6px 12px; outline: none;">
+                        <option value="All">All Workouts</option>
+                        <option value="HIIT / Cardio">HIIT / Cardio</option>
+                        <option value="Weight Lifting">Weight Lifting</option>
+                        <option value="Yoga / Stretching">Yoga / Stretching</option>
+                     </select>
                     </div>
                     
-                    <button type="button" class="btn-primary" style="width: 100%;">Save to Database</button>
-                </form>
+                    <div id="loading-indicator" class="hidden"><i class="fas fa-spinner fa-spin"></i> Fetching data...</div>
+                    <div id="log-container" class="scrollable-logs" style="max-height: 550px; overflow-y: auto; padding-right: 15px;">
+                        </div>
+                </div>
             </div>
         </div>
     </section>
@@ -101,7 +134,7 @@
                         <label>Age</label>
                         <input type="number" id="calc-age" placeholder="e.g., 22">
                     </div>
-                    <button type="button" class="btn-primary full-width">Calculate Results</button>
+                    <button type="button" class="btn-primary full-width" onclick="calculateHealth()">Calculate Results</button>
                 </div>
                 <div class="calc-results hidden" id="calc-results">
                     <h3 id="res-bmi">BMI: 0</h3>

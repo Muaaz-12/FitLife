@@ -87,3 +87,115 @@ window.addEventListener('click', (e) => {
         modal.style.display = 'none';
     }
 });
+
+// --- Step 6: API Integration (JSON Server - GET & POST) ---
+
+const API_URL = 'http://localhost:3000/logs';
+
+// 1. Fetch and Display Logs (GET)
+async function fetchAndRenderLogs() {
+    const logContainer = document.getElementById('log-container');
+    const filterValue = document.getElementById('filter-type').value;
+
+    logContainer.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Fetching data from database...</p>';
+
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        let logs = await response.json();
+
+        // Filter Logic (Requirement)
+        if (filterValue !== "All") {
+            logs = logs.filter(log => log.workoutType === filterValue);
+        }
+
+        if (logs.length === 0) {
+            logContainer.innerHTML = '<p>No logs found. Start working out!</p>';
+            return;
+        }
+
+        logContainer.innerHTML = ''; // Clear loading text
+
+        // Reverse to show newest logs at the top
+        logs.reverse().forEach(log => {
+            const card = document.createElement('div');
+            card.className = 'log-item'; // Using the new specific class
+            card.style.animation = 'fadeIn 0.5s ease forwards';
+            card.innerHTML = `
+                <div class="log-date">${log.date}</div>
+                <p><strong>Workout:</strong> ${log.workoutType} (${log.intensity}) - ${log.duration} mins</p>
+                <p><strong>Burned:</strong> <span class="accent-text" style="font-weight: bold;">${log.calories} kcal</span></p>
+                <p><strong>Diet:</strong> ${log.diet}</p>
+            `;
+            logContainer.appendChild(card);
+        });
+
+    } catch (error) {
+        logContainer.innerHTML = '<p class="error-msg">Error fetching data. Ensure JSON Server is running in the terminal.</p>';
+    }
+}
+
+// 2. Submit New Log (POST) with Inline Validation
+document.getElementById('activity-form').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Stop page from reloading
+
+    const type = document.getElementById('log-type').value;
+    const duration = document.getElementById('log-duration').value;
+    const calories = document.getElementById('log-calories').value;
+    const intensity = document.getElementById('log-intensity').value;
+    const diet = document.getElementById('log-diet').value;
+
+    // Inline Validation
+    let isValid = true;
+    document.querySelectorAll('.field-error').forEach(el => el.innerText = '');
+    document.getElementById('form-error').classList.add('hidden');
+
+    if (!type) { document.getElementById('err-type').innerText = "* Required"; isValid = false; }
+    if (!duration || duration <= 0) { document.getElementById('err-duration').innerText = "* Valid time needed"; isValid = false; }
+    if (!calories || calories <= 0) { document.getElementById('err-calories').innerText = "* Valid kcal needed"; isValid = false; }
+    if (!intensity) { document.getElementById('err-intensity').innerText = "* Required"; isValid = false; }
+    if (!diet.trim()) { document.getElementById('err-diet').innerText = "* Required"; isValid = false; }
+
+    if (!isValid) {
+        document.getElementById('form-error').classList.remove('hidden');
+        return;
+    }
+
+    // Prepare data to send
+    const newLog = {
+        id: Date.now().toString(),
+        workoutType: type,
+        duration: parseInt(duration),
+        calories: parseInt(calories),
+        intensity: intensity,
+        diet: diet,
+        date: new Date().toISOString().split('T')[0]
+    };
+
+    try {
+        const btn = document.getElementById('submit-btn');
+        const originalText = btn.innerText;
+        btn.innerText = "Saving...";
+
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newLog)
+        });
+
+        if (!response.ok) throw new Error("Failed to save data");
+
+        // Success: Reset form and refresh logs
+        document.getElementById('activity-form').reset();
+        fetchAndRenderLogs();
+        // Updated text to match new HTML
+        btn.innerHTML = '<i class="fas fa-check-circle"></i> Save Daily Record'; 
+        
+  } catch (error) {
+        document.getElementById('form-error').innerText = "Failed to save log to server. Is JSON Server running?";
+        document.getElementById('form-error').classList.remove('hidden');
+        btn.innerHTML = '<i class="fas fa-check-circle"></i> Save Daily Record'; 
+    }
+}); 
+fetchAndRenderLogs();
