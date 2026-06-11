@@ -11,35 +11,55 @@
 
 <body>
 
-    <nav id="navbar">
-        <div class="logo">Fit<span>Life</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#logger">Daily Log</a></li>
-        </ul>
-        <div class="nav-actions">
-            <button id="theme-toggle" class="btn-icon"><i class="fas fa-moon"></i></button>
-        </div>
-    </nav>
+    <header id="main-header">
+        <nav id="navbar" class="container" style="display: flex; justify-content: space-between; align-items: center; min-height: 80px;">
+            
+            <div class="logo">
+                <a href="#" style="text-decoration: none; font-size: 26px; font-weight: 800; color: var(--text-color);">Fit<span style="color: var(--accent);">Life</span></a>
+            </div>
+            
+            <ul class="nav-links" style="display: flex; gap: 30px; list-style: none;">
+                <li><a href="#" class="nav-item">Home</a></li>
+                <li><a href="#logger" class="nav-item">Daily Log</a></li>
+                <li><a href="#calculators" class="nav-item">Calculators</a></li>
+                <li><a href="#trainers" class="nav-item">Trainers</a></li>
+            </ul>
 
-    <header id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Redefine Your Limits.</h1>
-            <p>Join the ultimate fitness portal.</p>
-        </div>
+            <div class="nav-actions" style="display: flex; gap: 15px; align-items: center;">
+                <a href="admin.html" class="btn-admin">Admin Panel</a>
+                <button id="theme-toggle" class="btn-theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+        </nav>
     </header>
-<section id="logger" class="section bg-light">
+
+    <section class="premium-hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-badge">Premium Fitness Experience</span>
+                <h1 class="hero-title">Redefine <br> Your Limits. <br> <span>Achieve <br> Greatness.</span></h1>
+                <p class="hero-subtitle">Join the ultimate fitness portal with expert trainers and smart AI tracking.</p>
+                <div class="hero-btns">
+                    <a href="#logger" class="btn-hero-primary">Start Tracking</a>
+                    <a href="#trainers" class="btn-hero-outline">Meet Experts</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="logger" class="section bg-light">
         <div class="container">
             <div class="section-title">
                 <h2>Evening Activity Logger</h2>
                 <p>Log your daily workout and diet. Data is securely saved to the JSON Server.</p>
             </div>
             
-            <div class="grid-2 align-start" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start;">
+            <div class="grid-2">
                 
-                <div class="log-form-card" style="background: #fff; padding: 30px; border-radius: 12px; border: 1px solid var(--accent); box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <h3 style="margin-bottom: 20px;"><i class="fas fa-edit"></i> Submit Today's Data</h3>
+                <div class="log-form-card card">
+                    <h3><i class="fas fa-edit"></i> Submit Today's Data</h3>
                     <div id="form-error" class="error-msg hidden">Please check the fields below.</div>
                     
                     <form id="activity-form">
@@ -54,7 +74,7 @@
                             <span class="field-error" id="err-type"></span>
                         </div>
                         
-                        <div class="grid-2-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="grid-2-inner">
                             <div class="input-group">
                                 <label>2. Duration (Mins)</label>
                                 <input type="number" id="log-duration" placeholder="e.g. 45">
@@ -84,36 +104,36 @@
                             <span class="field-error" id="err-diet"></span>
                         </div>
                         
-                        <button type="submit" class="btn-primary full-width" id="submit-btn" style="margin-top: 10px; font-size: 1.05rem;">
+                        <button type="submit" class="btn-primary full-width" id="submit-btn">
                             Save to Database
                         </button>
                     </form>
                 </div>
 
                 <div class="log-history">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                      <div style="display: flex; align-items: center; gap: 10px;">
-                        <h3 style="font-size: 1.3rem;">Recent Logs</h3>
-                        <button type="button" class="btn-refresh" onclick="fetchAndRenderLogs()" title="Refresh Logs">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                      </div>
+                    <div class="history-header">
+                        <div class="history-title-block">
+                            <h3>Recent Logs</h3>
+                            <button type="button" class="btn-refresh" onclick="fetchAndRenderLogs()" title="Refresh Logs">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
                     
-                     <select id="filter-type" class="filter-select" onchange="fetchAndRenderLogs()" style="border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 5px; padding: 6px 12px; outline: none;">
-                        <option value="All">All Workouts</option>
-                        <option value="HIIT / Cardio">HIIT / Cardio</option>
-                        <option value="Weight Lifting">Weight Lifting</option>
-                        <option value="Yoga / Stretching">Yoga / Stretching</option>
-                     </select>
+                        <select id="filter-type" class="filter-select" onchange="fetchAndRenderLogs()">
+                            <option value="All">All Workouts</option>
+                            <option value="HIIT / Cardio">HIIT / Cardio</option>
+                            <option value="Weight Lifting">Weight Lifting</option>
+                            <option value="Yoga / Stretching">Yoga / Stretching</option>
+                        </select>
                     </div>
                     
                     <div id="loading-indicator" class="hidden"><i class="fas fa-spinner fa-spin"></i> Fetching data...</div>
-                    <div id="log-container" class="scrollable-logs" style="max-height: 550px; overflow-y: auto; padding-right: 15px;">
-                        </div>
+                    <div id="log-container" class="scrollable-logs"></div>
                 </div>
             </div>
         </div>
     </section>
+
     <section id="calculators" class="section">
         <div class="container">
             <div class="section-title">
