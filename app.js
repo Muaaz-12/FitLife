@@ -62,8 +62,9 @@ function calculateHealth() {
     document.getElementById('calc-results').classList.remove('hidden');
 }
 
-// 4. Trainer Modal Logic (Opening and Closing Popups)
+// 4. Trainer Modal & Booking Flow Logic
 function openTrainerModal(name, specialty, exp, skills, style, timing, imgSrc) {
+    // Fill Trainer Details
     document.getElementById('tm-name').innerText = name;
     document.getElementById('tm-spec').innerText = specialty;
     document.getElementById('tm-exp').innerText = exp;
@@ -72,20 +73,52 @@ function openTrainerModal(name, specialty, exp, skills, style, timing, imgSrc) {
     document.getElementById('tm-timing').innerText = timing;
     document.getElementById('tm-img').style.backgroundImage = `url('${imgSrc}')`;
     
+    // Set Trainer name dynamically in the booking form
+    document.getElementById('booking-trainer-name').innerText = name;
+    
+    // Always show details first, hide booking form when opening
+    document.getElementById('trainer-details-section').classList.remove('hidden');
+    document.getElementById('trainer-booking-section').classList.add('hidden');
+    
     document.getElementById('trainerModal').style.display = 'flex';
 }
 
-// Close the modal when the 'X' is clicked
-document.getElementById('close-trainer').addEventListener('click', () => {
+// Close Modal Logic
+function closeTrainerModal() {
     document.getElementById('trainerModal').style.display = 'none';
-});
+    document.getElementById('booking-form').reset(); 
+}
 
-// Close the modal if the user clicks outside the modal box
+document.getElementById('close-trainer').addEventListener('click', closeTrainerModal);
 window.addEventListener('click', (e) => {
     const modal = document.getElementById('trainerModal');
-    if (e.target === modal) {
-        modal.style.display = 'none';
-    }
+    if (e.target === modal) closeTrainerModal();
+});
+
+// Show Booking Form when "Book Session" is clicked
+document.getElementById('btn-show-booking').addEventListener('click', () => {
+    document.getElementById('trainer-details-section').classList.add('hidden');
+    document.getElementById('trainer-booking-section').classList.remove('hidden');
+});
+
+// Go back to details if "Cancel" is clicked
+document.getElementById('btn-cancel-booking').addEventListener('click', () => {
+    document.getElementById('trainer-booking-section').classList.add('hidden');
+    document.getElementById('trainer-details-section').classList.remove('hidden');
+});
+
+// Handle Booking Form Submission
+
+document.getElementById('booking-form').addEventListener('submit', (e) => {
+    e.preventDefault(); // پیج ریلوڈ ہونے سے روکے گا
+    
+    const trainerName = document.getElementById('booking-trainer-name').innerText;
+    const userEmail = document.getElementById('bk-email').value; // ای میل کی ویلیو اٹھائی
+    
+    // پریمیم الرٹ میسج
+    alert(`🎉 Booking Successful!\n\nYour session request with ${trainerName} has been submitted. A confirmation backup has been sent to ${userEmail}.\n\nOur team will contact you on your phone shortly!`);
+    
+    closeTrainerModal(); // ماڈل بند کر دیں
 });
 
 // --- Step 6: API Integration (JSON Server - GET & POST) ---

@@ -1,15 +1,6 @@
 {
   "logs": [
     {
-      "id": "1",
-      "workoutType": "Weight Lifting",
-      "duration": 60,
-      "calories": 400,
-      "intensity": "High",
-      "diet": "High protein, avoided sugar. Ate chicken and rice.",
-      "date": "2026-06-03"
-    },
-    {
       "id": "ky6l2VVEpTc",
       "workoutType": "Weight Lifting",
       "duration": 450,
@@ -24,7 +15,7 @@
       "duration": 450,
       "calories": 350,
       "intensity": "Low",
-      "diet": "protien",
+      "diet": "protieen",
       "date": "2026-06-10"
     },
     {
@@ -35,6 +26,15 @@
       "intensity": "High",
       "diet": "full protien\n",
       "date": "2026-06-10"
+    },
+    {
+      "id": "RVWcxkdwzcI",
+      "workoutType": "Weight Lifting",
+      "duration": 350,
+      "calories": 400,
+      "intensity": "Medium",
+      "diet": "full protien\n",
+      "date": "2026-06-12"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

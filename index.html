@@ -185,8 +185,8 @@
                     <h3>Sarah Khan</h3>
                     <p>Yoga & Flexibility</p>
                 </div>
-                <div class="card trainer-card" onclick="openTrainerModal('David Miller', 'Fat Loss & Cardio', '10 Years', 'HIIT', 'Energetic', 'Mon, Wed, Fri: 5 PM - 9 PM', 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')">
-                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card trainer-card" onclick="openTrainerModal('David Miller', 'Fat Loss & Cardio', '10 Years', 'HIIT', 'Energetic', 'Mon, Wed, Fri: 5 PM - 9 PM', 'https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?q=80&w=500')">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?q=80&w=500');"></div>
                     <h3>David Miller</h3>
                     <p>Fat Loss & Cardio</p>
                 </div>
@@ -195,8 +195,8 @@
                     <h3>Ayesha Malik</h3>
                     <p>Nutrition Planner</p>
                 </div>
-                <div class="card trainer-card" onclick="openTrainerModal('James Wilson', 'Beginner Coaching', '4 Years', 'Bodyweight', 'Patient', 'Weekends: 8 AM - 2 PM', 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')">
-                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="card trainer-card" onclick="openTrainerModal('James Wilson', 'Beginner Coaching', '4 Years', 'Bodyweight', 'Patient', 'Weekends: 8 AM - 2 PM', 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=500')">
+                    <div class="trainer-img" style="background-image: url('https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=500');"></div>
                     <h3>James Wilson</h3>
                     <p>Beginner Coaching</p>
                 </div>
@@ -219,20 +219,64 @@
     <div id="trainerModal" class="modal">
         <div class="modal-content card trainer-modal-content">
             <span class="close" id="close-trainer">&times;</span>
-            <div class="tm-header">
-                <div class="tm-img" id="tm-img"></div>
-                <div class="tm-title">
-                    <h2 id="tm-name">Trainer Name</h2>
-                    <p id="tm-spec" class="accent-text">Specialty</p>
+            
+            <div id="trainer-details-section">
+                <div class="tm-header">
+                    <div class="tm-img" id="tm-img"></div>
+                    <div class="tm-title">
+                        <h2 id="tm-name">Trainer Name</h2>
+                        <p id="tm-spec" class="accent-text">Specialty</p>
+                    </div>
                 </div>
+                <div class="tm-body">
+                    <p><strong><i class="fas fa-briefcase"></i> Experience:</strong> <span id="tm-exp"></span></p>
+                    <p><strong><i class="fas fa-dumbbell"></i> Skills:</strong> <span id="tm-skills"></span></p>
+                    <p><strong><i class="fas fa-running"></i> Style:</strong> <span id="tm-style"></span></p>
+                    <p><strong><i class="fas fa-clock"></i> Timings:</strong> <span id="tm-timing"></span></p>
+                </div>
+                <button type="button" class="btn-primary full-width" id="btn-show-booking">Book Session</button>
             </div>
-            <div class="tm-body">
-                <p><strong><i class="fas fa-briefcase"></i> Experience:</strong> <span id="tm-exp"></span></p>
-                <p><strong><i class="fas fa-dumbbell"></i> Skills:</strong> <span id="tm-skills"></span></p>
-                <p><strong><i class="fas fa-running"></i> Style:</strong> <span id="tm-style"></span></p>
-                <p><strong><i class="fas fa-clock"></i> Timings:</strong> <span id="tm-timing"></span></p>
+
+            <div id="trainer-booking-section" class="hidden">
+                <h2 style="margin-bottom: 10px; color: var(--text-color);">Book Your Session</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Fill details to train with <span id="booking-trainer-name" class="accent-text" style="font-weight: bold;"></span></p>
+                
+                <form id="booking-form" style="text-align: left;">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="bk-name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="bk-email" required placeholder="e.g., name@example.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="bk-contact" required placeholder="e.g., 0300-1234567">
+                    </div>
+
+                    <div class="grid-2-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        
+                        <div class="input-group">
+                            <label>Preferred Time Slot</label>
+                            <select id="bk-slot" required>
+                                <option value="" disabled selected>Select Slot</option>
+                                <option value="Morning (6 AM - 11 AM)">Morning Slot (6 AM - 11 AM)</option>
+                                <option value="Afternoon (12 PM - 4 PM)">Afternoon Slot (12 PM - 4 PM)</option>
+                                <option value="Evening (5 PM - 9 PM)">Evening Slot (5 PM - 9 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 25px;">
+                        <button type="button" id="btn-cancel-booking" class="full-width" style="padding: 12px; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); border-radius: 8px; cursor: pointer; font-weight: 600;">Cancel</button>
+                        <button type="submit" class="btn-primary full-width">Confirm Booking</button>
+                    </div>
+                </form>
             </div>
-            <button type="button" class="btn-primary full-width">Book Session</button>
+
         </div>
     </div>
     <script src="app.js"></script>

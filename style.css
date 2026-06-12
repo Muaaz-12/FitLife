@@ -238,7 +238,7 @@ footer { background: #0a0a0a; color: #fff; padding: 50px 0 20px; text-align: cen
 }
 .logo-admin-container { display: flex; align-items: center; gap: 15px; }
 .admin-badge {
-    background: rgba(255, 71, 87, 0.15); color: #ff4757; font-size: 0.8rem; padding: 6px 14px; 
+    background: rgba(225, 117, 122, 0.15); color: #ff4757; font-size: 0.6rem; padding: 6px 12px; 
     border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 1px solid #ff4757;
 }
 .btn-admin-home {
@@ -279,3 +279,40 @@ footer { background: #0a0a0a; color: #fff; padding: 50px 0 20px; text-align: cen
     .admin-stats-grid { grid-template-columns: 1fr; }
     .logo-admin-container { flex-direction: column; align-items: flex-start; gap: 5px; }
 }
+
+/* --- Step 7: Admin Panel Specific Styles --- */
+
+.admin-table th, .admin-table td { 
+    border-bottom: 1px solid #e0e0e0; 
+}
+.admin-table tr:hover { 
+    background: rgba(0,0,0,0.02); 
+}
+
+/* Action Buttons in Table */
+.btn-edit { 
+    background: #f39c12; 
+    color: #fff; 
+    padding: 8px 15px; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    margin-right: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: transform 0.2s;
+}
+.btn-edit:hover { transform: scale(1.05); }
+
+.btn-delete { 
+    background: #ff4757; 
+    color: #fff; 
+    padding: 8px 15px; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: transform 0.2s;
+}
+.btn-delete:hover { transform: scale(1.05); }
