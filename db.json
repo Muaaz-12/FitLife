@@ -26,6 +26,15 @@
       "intensity": "Medium",
       "diet": "full protien\n",
       "date": "2026-06-12"
+    },
+    {
+      "id": "rfODi-2pwn4",
+      "workoutType": "HIIT / Cardio",
+      "duration": 350,
+      "calories": 400,
+      "intensity": "High",
+      "diet": "protien\n",
+      "date": "2026-06-14"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

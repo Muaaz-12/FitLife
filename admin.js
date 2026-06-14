@@ -1,4 +1,4 @@
-// --- Step 8: Admin Panel - Fetch Data & Calculate Stats ---
+//: Admin Panel - Fetch Data & Calculate Stats ---
 
 const API_URL = 'http://localhost:3000/logs';
 

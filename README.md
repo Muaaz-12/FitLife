@@ -47,14 +47,22 @@ To run this project on your machine, you just need Node.js installed to run the 
    ```bash
    npx json-server --watch db.json
 
-   ---
+   # Website Screenshots
 
-## 📸 Application Screenshots
+## Home Page
+![Home Page](screenshots/Home%20Page.png)
 
-Here are the visual representations of the application interfaces:
+## Activity Logger
+![Activity Loger](screenshots/Activity%20Logger.png)
 
-**1. Main Dashboard & UI** ![Screenshot 1](Screenshot(13).png)
+## Health Calculator
+![Health Calculator](screenshots/Health%20Calculator.png)
 
-**2. Form & Data Interactions** ![Screenshot 2](Screenshot(12).png)
+## Trainer Page
+![Trainer Page](screenshots/Trainer%20Page.png)
 
-**3. Additional Interface Details** ![Screenshot 3](Screenshot(14).png)
+## Admin Page
+![Admin Page](screenshots/Admin%20Page.png)
+
+## Dark Mode 
+![Dark Mode](screenshots/Dark%20Mode.png)

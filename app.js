@@ -1,4 +1,4 @@
-// --- Step 5: UI Interactions & Basic Logic ---
+//UI Interactions & Basic Logic 
 
 // 1. Sticky Navbar (Scroll effect)
 window.addEventListener('scroll', () => {
@@ -7,7 +7,7 @@ window.addEventListener('scroll', () => {
     else nav.classList.remove('scrolled');
 });
 
-// 2. Dark/Light Theme Toggle (Saving to localStorage for Bonus Marks)
+// 2. Dark/Light Theme Toggle 
 const themeToggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 const themeIcon = themeToggleBtn.querySelector('i');
@@ -110,18 +110,18 @@ document.getElementById('btn-cancel-booking').addEventListener('click', () => {
 // Handle Booking Form Submission
 
 document.getElementById('booking-form').addEventListener('submit', (e) => {
-    e.preventDefault(); // پیج ریلوڈ ہونے سے روکے گا
+    e.preventDefault();
     
     const trainerName = document.getElementById('booking-trainer-name').innerText;
-    const userEmail = document.getElementById('bk-email').value; // ای میل کی ویلیو اٹھائی
+    const userEmail = document.getElementById('bk-email').value; 
     
-    // پریمیم الرٹ میسج
+  
     alert(`🎉 Booking Successful!\n\nYour session request with ${trainerName} has been submitted. A confirmation backup has been sent to ${userEmail}.\n\nOur team will contact you on your phone shortly!`);
     
-    closeTrainerModal(); // ماڈل بند کر دیں
+    closeTrainerModal();
 });
 
-// --- Step 6: API Integration (JSON Server - GET & POST) ---
+//  API Integration (JSON Server - GET & POST) ---
 
 const API_URL = 'http://localhost:3000/logs';
 
