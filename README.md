@@ -1,5 +1,10 @@
 
----
+##Course: Web Technologies (SP26)  
+##University: The Islamia University of Bahawalpur (IUB)  
+##Student Name: Muhammad Muaaz
+##Roll Number: [F24BDOCS1M01051]
+##Semester: BS Computer Science (4th Semester)  
+##Section: [2M]
 
 ## Hello and Welcome!
 Welcome to **FitLife Premium**, my individual capstone project for the Web Technologies course. 
